@@ -59,11 +59,6 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 
 	public function setup($r) 
 	{}
-	public function indexAction() {}
-	public function getAction() {}
-	public function putAction() {}
-	public function deleteAction() {}
-	public function postAction() {}
 
 	protected function initFormat($r)
 	{
@@ -93,12 +88,18 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 	protected function urlMatch($r)
 	{
 		$path = $r->getParam('_path');
+
+		//remove file extension
 		$path_parts = explode('.',$path);
 		if (in_array(array_pop($path_parts),array_keys(self::$mime_types))) {
 			$path = join('.',$path_parts);
 		}
+
 		foreach ($this->resource_map as $uri_template => $resource) {
 			$uri_regex = $uri_template;
+
+			//default '' resource
+			$r->setParam('_resource','');
 
 			//skip regex template stuff if uri_template is a plain string
 			if (false !== strpos($uri_template,'{')) {
@@ -125,26 +126,13 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 		return $r;
 	}
 
-	public function noSuchResourceAction() 
-	{
-		//development ONLY
-		print "no resource match";exit;
-	}
-
 	protected function setAction($r)
 	{
 		$orig = $r->getActionName();
-		if ('index' == $orig) {
-			return $r;
-		}
 		if ('post' == $orig) {
 			$orig = 'post to';
 		}
 		$resource = $r->getParam('_resource');
-		if (!$resource) {
-			$r->setActionName('no such resource');
-			return $r;
-		}
 		$format = $r->getParam('_format');
 		if ('html' == $format) {
 			$r->setActionName($orig.' '.$resource);
