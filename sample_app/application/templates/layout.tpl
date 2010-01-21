@@ -3,7 +3,7 @@
 		<base href="/listmaker/public/"/>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		{block name="head-meta"}{/block}
-		<title>{block name="title"}VRC Slides{/block}</title>
+		<title>{block name="title"}ListMaker{/block}</title>
 		<style type="text/css">
 			{block name="style"}{/block}
 		</style>

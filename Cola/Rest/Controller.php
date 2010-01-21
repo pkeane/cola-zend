@@ -95,11 +95,11 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 			$path = join('.',$path_parts);
 		}
 
+		//default '' resource
+		$r->setParam('_resource','');
+
 		foreach ($this->resource_map as $uri_template => $resource) {
 			$uri_regex = $uri_template;
-
-			//default '' resource
-			$r->setParam('_resource','');
 
 			//skip regex template stuff if uri_template is a plain string
 			if (false !== strpos($uri_template,'{')) {
@@ -111,7 +111,7 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 			}
 
 			//second, see if uri_regex matches the request uri (a.k.a. path)
-			if (preg_match("!^$uri_regex\$!",$path,$uri_matches)) {
+			if ($path && preg_match("!^$uri_regex\$!",$path,$uri_matches)) {
 				//create parameters based on uri template and request matches
 				if (isset($template_matches[1]) && isset($uri_matches[1])) { 
 					array_shift($uri_matches);
