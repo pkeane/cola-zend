@@ -1,0 +1,2 @@
+Cola classes are meant to create a REST-friendly development model for the Zend Framework.  Note that Zend already has classes w/ this goal in mind (see Zend/Rest).  Cola takes things just a bit farther down the REST path, and does *not* use some of the standard Zend features (like Views).  Rather, it provides RESTful routing, and the ability to interact with an arbitrary set of sub-resources within a single controller.  For the View part of MVC, Cola uses Smarty templating.  All-in-all Cola makes Zend somewhat more like Django.
+
