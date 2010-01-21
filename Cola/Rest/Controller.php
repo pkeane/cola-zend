@@ -132,6 +132,9 @@ class Cola_Rest_Controller extends Zend_Controller_Action
 		if ('post' == $orig) {
 			$orig = 'post to';
 		}
+		if (!$orig) {
+			$orig = 'get';
+		}
 		$resource = $r->getParam('_resource');
 		$format = $r->getParam('_format');
 		if ('html' == $format) {
