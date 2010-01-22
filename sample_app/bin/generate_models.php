@@ -77,6 +77,7 @@ class {$namespace}_Model_{$class_root_name} extends Zend_Db_Table_Row_Abstract
 			\$set = new {$namespace}_Model_{$class_root_name}s;
 			return \$set->createRow();
 		}
+	}
 }
 ";		
 
